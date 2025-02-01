@@ -1,0 +1,168 @@
+body {
+
+}
+
+h1 {
+
+}
+
+.comparison-table {
+    width: 100%;
+    max-width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.comparison-table th, .comparison-table td {
+    padding: 15px;
+    text-align: center;
+}
+
+.comparison-table th {
+    background-color: #0056a2;
+    color: white;
+    font-size: 18px;
+}
+
+.comparison-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.comparison-table tr:hover {
+    background-color: #f1f9f1;
+}
+
+.highlight {
+    background-color: #ffeb3b;
+    font-weight: bold;
+}
+
+.comparison-table td {
+    border-bottom: 1px solid #ddd;
+    color: #555;
+}
+
+.comparison-table td:first-child {
+    text-align: left;
+    font-weight: bold;
+}
+
+.cta {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cta:hover {
+    background-color: #45a049;
+}
+.installation-steps {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 80%;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.installation-steps details {
+    margin-bottom: 15px;
+}
+
+.installation-steps summary {
+    font-size: 1.5em;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #2C3E50;
+    color: white;
+    border-radius: 5px;
+}
+
+.installation-steps h1, .installation-steps h2, .installation-steps h3 {
+    margin: 10px 0;
+}
+
+.installation-steps h1 {
+    font-size: 1.8em;
+    color: #333;
+}
+
+.installation-steps h2 {
+    font-size: 1.5em;
+    color: #555;
+}
+
+.installation-steps h3 {
+    font-size: 1.2em;
+    color: #777;
+}
+
+.installation-steps img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.installation-steps p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #333;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+}
+
+
+.download-link {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.download-link p {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.download-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: #2980b9;
+}
+
+.presentation {
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.presentation h1 {
+    font-size: 2em;
+    color: #66f;
+    margin-bottom: 10px;
+}
+
+.presentation p {
+    font-size: 1.2em;
+    color: #333;
+    line-height: 1.6;
+}

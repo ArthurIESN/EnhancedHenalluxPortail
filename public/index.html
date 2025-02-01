@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/calendar.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- icon -->
+    <link rel="icon" href="images/logo.png">
+    <title>Enhanced Henallux Portail</title>
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/api.js"></script>
+</head>
+<body>
+
+<!-- conditions d'utilisation -->
+
+<div id="conditions-container" class="hidden">
+    <div id="conditions-content">
+        <h2 class="highlight">Conditions d'utilisation</h2>
+        <p>Dans le cadre de l’utilisation d’EnhancedHenalluxPortail.be, nous avons besoin de votre accord pour l’utilisation de votre <span class="highlight">Token</span> associé au site <a href="https://portail.henallux.be">https://portail.henallux.be</a>.</p>
+        <p>Ce <span class="highlight">Token</span> nous permet d’effectuer des requêtes vers le serveur <a href="https://portail.henallux.be/api">https://portail.henallux.be/api</a> afin de récolter les informations nécessaires au bon fonctionnement du site web.</p>
+        <p>Votre <span class="highlight">Token</span> est sauvegardé localement sur votre navigateur.<br> Veuillez noter que le <span class="highlight">Token</span> st également envoyé à notre serveur afin d’effectuer les requêtes nécessaires à l’affichage de votre horaire.</p>
+        <p>Si vous ne souhaitez pas utiliser votre <span class="highlight">Token</span> pour quelque raison que ce soit, vous pouvez toujours <a href="/extension/EnhancedHenalluxPortail.zip"> télécharger l’extension Google Chrome </a> qui agit directement sur le portail Henallux sans communiquer avec notre serveur.</p>
+        <p>Aucune de vos informations transitant par notre serveur n’est sauvegardée</p>
+        <p>Veuillez noter que, sans accepter ces conditions d’utilisation, vous ne pourrez pas utiliser le site web.</p>
+
+        <button class="red-button" id="acceptConditions">Accepter</button>
+    </div>
+</div>
+
+<nav class="navbar">
+    <div class="container">
+        <div class="settings-container">
+            <button id="settings">Paramètres</button>
+            <div class="navbar-header">
+                <button class="navbar-toggler" data-toggle="open-navbar1">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <a href="#">
+                    <h4>Enhanced<span>Henallux Portail</span></h4>
+                </a>
+            </div>
+        </div>
+        <div class="navbar-menu" id="open-navbar1">
+            <ul class="navbar-nav">
+                <li><a id="settingsBurger">Paramètres</a></li>
+                <li class="active"><a href="/">Horaire</a></li>
+                <li><a href="extension.html">Extension</a></li>
+                <li><a href="commentCaMarche.html">Comment ça marche ?</a></li>
+                <li class="externLink"><a href="https://outlook.office.com/mail/" target="_blank">Outlook</a></li>
+                <li class="externLink"><a href="https://moodle.henallux.be/my/" target="_blank">Moodle</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div id="popup" class="hidden popup-container">
+    <div class="popup-content">
+        <div id="settingsContainer">
+
+            <div>
+                <button class="red-button" id="clearSettings">Effacer les paramètres</button>
+            </div>
+
+            <!-- token input -->
+            <div class="form-group">
+                <label for="token">Token:</label>
+                <div class="settings-container">
+                    <input type="text" id="token" class="form-control" placeholder="Enter your token">
+                    <button onclick="UpdateToken()">Valider le token</button>
+                </div>
+                <label for="ImportSettings">Importer les paramètres:</label>
+                <div class="settings-container">
+                    <input type="text" id="ImportSettings" class="form-control" placeholder="">
+                    <button onclick="ImportSettings()">Importer les paramètres</button>
+                </div>
+
+            </div>
+
+            <!-- list of promotions -->
+            <div id="promotions-container">
+                <details>
+                    <summary>LISTE DES GROUPES</summary>
+                    <div id="promotions-list"></div>
+                </details>
+
+                <!-- list of classes -->
+                <div id="classes">
+                    <details id="class_b1" class="selectable">
+                        <summary>B1</summary>
+                        <div class="colorPicker">
+                            <label for="class_b1_color">Couleur:</label>
+                            <input class="colorInput" type="color" data-class-id="0" id="class_b1_color" value="#ff0000">
+                        </div>
+                        <div id="class_b1_container" class="class_container"></div>
+                    </details>
+
+                    <details id="class_b2" class="selectable">
+                        <summary>B2</summary>
+                        <div class="colorPicker">
+                            <label for="class_b2_color">Couleur:</label>
+                            <input class="colorInput" type="color" data-class-id="1" id="class_b2_color" value="#ff0000">
+                        </div>
+                        <div id="class_b2_container"  class="class_container"></div>
+                    </details>
+
+                    <details id="class_b3" class="selectable">
+                        <summary>B3</summary>
+                        <div class="colorPicker">
+                            <label for="class_b3_color">Couleur:</label>
+                            <input class="colorInput" type="color" data-class-id="2" id="class_b3_color" value="#ff0000">
+                        </div>
+
+                        <div id="class_b3_container"  class="class_container"></div>
+                    </details>
+
+                    <details id="class_other" class="selectable">
+                        <summary>AUTRE</summary>
+                        <div class="colorPicker">
+                            <label for="class_other_color">Couleur:</label>
+                            <input class="colorInput" type="color" data-class-id="3" id="class_other_color" value="#ff0000">
+                        </div>
+                        <div id="class_other_container"  class="class_container"></div>
+                    </details>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="message-container">
+    <p id="calendarMessage"></p>
+</div>
+
+<calendar></calendar>
+<script src="js/base.js"></script>
+<script src="js/navbar.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/presentation.css">
+  <!-- icon -->
+  <link rel="icon" href="images/logo.png">
+  <title>Enhanced Henallux Portail</title>
+
+</head>
+
+<body>
+<nav class="navbar">
+  <div class="container container-large">
+    <div class="settings-container">
+      <div class="navbar-header">
+        <button class="navbar-toggler" data-toggle="open-navbar1">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <a href="#">
+          <h4>Enhanced<span>Henallux Portail</span></h4>
+        </a>
+      </div>
+    </div>
+    <div class="navbar-menu" id="open-navbar1">
+      <ul class="navbar-nav">
+        <li><a href="/">Horaire</a></li>
+        <li class="active"><a href="extension.html">Extension</a></li>
+        <li><a href="commentCaMarche.html">Comment ça marche ?</a></li>
+        <li class="externLink"><a href="https://outlook.office.com/mail/" target="_blank">Outlook</a></li>
+        <li class="externLink"><a href="https://moodle.henallux.be/my/" target="_blank">Moodle</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="presentation">
+  <h1>Extension du portail henallux</h1>
+  <p>L'extension du portail permet de personnaliser son horaire à sa guise. Couleurs, classes et même cours, tout est personnalisable</p>
+</div>
+
+  <div class="installation-steps">
+
+    <div class="download-link">
+      <p><a href="extension/EnhancedHenalluxPortail.zip">Télécharger l'extension Google Chrome</a></p>
+    </div>
+
+    <details>
+      <summary>
+        1. Installation
+      </summary>
+      <h2>1.1 Télécharger l'extension</h2>
+      <h2>1.1 Décompression l'archive</h2>
+      <h2>1.3 Déplacer le dossier vers un dossier de votre choix (attention, le dossier ne doit pas être supprimé)</h2>
+      <h2>1.4. Installation de l'extension dans Google Chrome</h2>
+      <h3>1.4.1. Ouvrir le navigateur</h3>
+      <h3>1.4.2. Aller dans les extensions de Google Chrome (gérer les extensions)</h3>
+      <img src="images/steps/steps_select_extension.png" alt="Sélectionner l'extension">
+      <h3>1.4.3. Activer le mode développeur (tout en haut à droite)</h3>
+      <img src="images/steps/steps_enable_devmode.png" alt="Activer le mode developeur">
+      <h3>1.4.4. Cliquer sur "Charger l'extension non empaquetée"</h3>
+      <img src="images/steps/steps_load_extension.png" alt="Charger l'extension">
+      <h3>1.4.5. Sélectionner le dossier de l'extension</h3>
+    </details>
+
+    <details id="details-utilisation">
+      <summary>
+        2. Utilisation
+      </summary>
+
+      <p>Une fois l'installation complétée, vous devriez voir apparaître de nouveaux boutons au-dessus de l'horaire.</p>
+      <p><strong>LOCAUX</strong> Permet de selectionner l'horaire d'un ou plusieurs local/locaux.</p>
+      <p><strong>PERSONNALISER</strong> Permet de mettre à jour l'horaire avec les paramètres personnalisés.</p>
+      <p><strong>PARAMÈTRES</strong> Permet de personnaliser l'horaire (classes, cours et couleurs).</p>
+      <p><strong>RÉCUPÉRER LE TOKEN</strong> Permet de récupérer votre token utilisateur afin de le mettre à jour sur le site (il n'est pas utilise à l'utilisation de l'extension).</p>
+      <p><strong>EXPORTER LES PARAMÈTRES</strong> Permet de récupérer tous vos paramètres de l'extension afin de les importer sur le site (utile si vous utilisez l'extension depuis plusieurs mois).</p>
+      <img src="images/steps/steps_presentation.png" alt="presentation">
+
+      <h2>2.1 Paramètres</h2>
+      <p>Les paramètres de l'extension sont divisés en 3 catégories: classes, couleurs et cours.</p>
+      <p>Par défaut, l'extension ne charge pas l'horaire personnalisé au chargement du site, vous devez cocher la case qui permet cette fonctionnalité.</p>
+      <img src="images/steps/steps_settings.png" alt="paramètres">
+      <p>Les classes sont le/les groupe/groupes dans lequel vous êtes (ex: 1B-A et 2B-D)</p>
+      <img src="images/steps/steps_class1.png" alt="classes 1">
+      <img src="images/steps/steps_class2.png" alt="classes 2">
+      <p>Les couleurs sont celles qui s'afficheront sur le cours dans l'horaire. Les différentes couleurs permettent de distinguer les cours de B1, B2 et B3. La catégorie AUTRES reprend les cours présents dans plusieurs groupes de différents niveaux.</p>
+      <p>Les cours affichés correspondent à ceux que vous suivez. Par exemple, si vous n'avez plus qu'un seul cours de première à compléter, vous pouvez désélectionner tous les autres cours que vous n'avez plus ou que vous avez déjà validés, afin d'obtenir un emploi du temps plus allégé.</p>
+      <img src="images/steps/steps_cours.png" alt="cours">
+      
+      <p>Vous voila maintenant avec un horaire bien plus facile à lire</p>
+      <img src="images/steps/steps_fullcalendar.png" alt="horaire">
+    </details>
+  </div>
+
+</body>
+<script src="js/navbar.js"></script>
+</html>

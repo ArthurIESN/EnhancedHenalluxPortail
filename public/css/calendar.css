@@ -1,0 +1,537 @@
+/* Custom styles for FullCalendar */
+
+
+
+.fc-toolbar {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.fc-daygrid-day {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+}
+
+.fc-daygrid-day-number {
+    color: #007bff;
+}
+
+.fc-event {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+}
+
+.fc-day-today {
+    background-color: #e9ecef;
+}
+
+.fc-day-past {
+    color: #6c757d;
+}
+
+
+.class_container {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-start;
+    margin: 20px auto;
+    max-height: 300px;
+    overflow: auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.selectable label {
+    display: flex;
+
+}
+
+.fc-toolbar-title {
+    font-size: 1.2rem;
+    color: #333;
+}
+.fc-event {
+    font-size: 0.9rem;
+    border: none;
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+calendar {
+    width: calc(100% - 40px); /* Ajouter des marges latérales */
+    margin: 20px auto; /* Centrer horizontalement */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 1200px; /* Limiter la largeur maximale */
+    overflow: auto;
+}
+
+.fc {
+    max-height: unset; /* Assurer qu'il n'y a pas de restriction de hauteur */
+    overflow: visible; /* Assurer un affichage complet sans scrolling interne */
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+
+
+/* Conteneur principal de la popup */
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1002;
+}
+
+/* Contenu de la popup */
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 700px;
+    height: 900px;
+    text-align: center;
+    overflow: auto;
+}
+
+#classes,
+#promotions-container {
+    width: 100%;
+    margin: 20px 0px;
+}
+
+/* Détails des classes */
+details {
+    margin: 10px 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #f9f9f9;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+details:hover {
+    background: #f0f8ff;
+    border-color: #4a90e2;
+}
+
+summary {
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4a90e2;
+    cursor: pointer;
+}
+
+summary::marker {
+    color: #4a90e2;
+}
+
+/* Liste des promotions */
+#promotions-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#promotions-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    height: 300px;
+    overflow: auto;
+    transition: height 0.3s ease, opacity 0.3s ease;
+    background-color: white;
+}
+
+#promotions-container[open] #promotions-list {
+    opacity: 1;
+    height: 300px;
+}
+
+.promotion {
+    margin: 10px 10px;
+    padding: 10px 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #eef6ff;
+    color: #4a90e2;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: translateY(10px);
+    opacity: 0;
+    animation: fadeInUp 0.4s forwards;
+}
+
+.promotion:nth-child(even) {
+    animation-delay: 0.1s;
+}
+
+.promotion:nth-child(odd) {
+    animation-delay: 0.2s;
+}
+
+.promotion:hover {
+    background: #d9ebff;
+    border-color: #4a90e2;
+    transform: scale(1.05);
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    #classes, #promotions-container {
+        padding: 10px;
+    }
+
+    summary {
+        font-size: 1rem;
+    }
+
+    .promotion {
+        padding: 10px;
+    }
+}
+
+.promotion-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 10px;
+    padding: 10px 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #eef6ff;
+    color: #4a90e2;
+    font-weight: bold;
+    animation: fadeInUp 0.4s ease-in-out forwards;
+}
+
+.promotion-item input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.promotion-item label {
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    #classes, #promotions-container {
+        padding: 10px;
+    }
+
+    summary {
+        font-size: 1rem;
+    }
+
+    .promotion-item {
+        padding: 10px;
+    }
+}
+
+
+/* CSS */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+.settings-container
+{
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.settings-container button
+{
+    width: 230px;
+    font-size: 12px;
+}
+
+
+#calendarMessage
+{
+    font-size: 1.2em;
+    color: #fff;
+    background-color: #e74c3c;
+    border: 1px solid #c0392b;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+    display: none;
+}
+
+.message-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 100px;
+    position: fixed;
+    top: 100px;
+    width: 100%;
+    z-index: 1000; /* Assurez-vous que le message est au-dessus des autres éléments */
+    pointer-events: none;
+}
+
+/* Conteneur principal de la popup */
+#conditions-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    justify-content: center;
+    align-items: center;
+    z-index: 1001; /* Assurez-vous que le message est au-dessus des autres éléments */
+    pointer-events: auto; /* Permettre les clics sur le conteneur */
+}
+
+/* Contenu de la popup */
+#conditions-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 600px;
+    max-height: 80%;
+    overflow: auto;
+    text-align: left;
+}
+
+/* Bouton de fermeture */
+#close-conditions {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+/* Style pour le conteneur de texte */
+#conditions-content p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Style pour les liens */
+#conditions-content a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#conditions-content a:hover {
+    text-decoration: underline;
+}
+
+#conditions-content h2
+{
+    display: inline-block;
+}
+
+.red-button {
+    background-color: #e74c3c; /* Beau rouge */
+    box-shadow: #c0392b 0 10px 20px -10px; /* Ombre assortie */
+}
+
+.highlight {
+    background-color: #66f;; /* Couleur de fond jaune pour le surlignage */
+    color: white; /* Couleur du texte */
+    padding: 0.2em 0.4em; /* Espacement interne pour un meilleur rendu */
+    border-radius: 4px; /* Coins arrondis */
+    font-weight: bold; /* Texte en gras */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Légère ombre pour un effet de profondeur */
+}
+
+.colorPicker
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px auto;
+    justify-content: center;
+}
+
+.settings-container
+{
+    display: flex;
+}
+
+#clearSettings
+{
+    margin-bottom: 20px;
+}
+
+
+
+
+/*RESPONSIVE*/
+
+@media (max-width: 768px)
+{
+    #calendarMessage
+    {
+        font-size: 1em;
+        margin: 20px 10px;
+    }
+
+    /* FullCalendar responsiveness */
+    calendar {
+        width: 100%;
+        margin: 0 auto;
+        max-width: 100%;
+        overflow: visible; /* Disable internal scrolling */
+    }
+
+    .fc {
+        max-height: unset; /* Ensure no height restriction inside the calendar */
+        overflow: visible; /* Allow full rendering without internal scroll */
+    }
+
+    .fc-daygrid-day {
+        min-height: auto; /* Adapt for smaller screens */
+    }
+
+    .fc-scroller {
+        overflow: visible !important; /* Force disable internal scrolling */
+    }
+
+    .fc-toolbar {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .fc-toolbar-title {
+        font-size: 1rem;
+    }
+
+    .fc-event {
+        font-size: 0.75rem;
+        padding: 3px;
+    }
+
+    /* Popup responsiveness */
+    .popup-content {
+        width: 90%;
+        height: auto;
+        max-height: 80%;
+        padding: 15px;
+    }
+
+    /* General container adjustments */
+    #classes, #promotions-container {
+        width: 100%;
+    }
+
+    #promotions-container details {
+        width: 100%;
+    }
+
+    details {
+        padding: 8px;
+    }
+
+    summary {
+        font-size: 0.9rem;
+    }
+
+    /* Promotion list adjustments */
+    .promotion {
+        margin: 5px 0;
+        padding: 8px;
+    }
+
+    .promotion-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .promotion-item input[type="checkbox"] {
+        margin: 5px 0;
+    }
+
+    .promotion-item label {
+        font-size: 0.9rem;
+    }
+
+    /* Class container adjustments */
+    .class_container {
+        padding: 15px;
+    }
+
+    /* Token container adjustments */
+    .settings-container {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .settings-container button {
+        width: 100%;
+    }
+}
+
+.fc-scroller .fc-scroller-liquid {
+    overflow: visible !important;
+}
+
+.fc .fc-scroller-liquid
+{
+    height: auto !important;
+}
+
