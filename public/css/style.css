@@ -220,7 +220,7 @@ a {
     .navbar .navbar-menu .navbar-nav > li > a
     {
         padding: 0.5rem 0.5rem;
-        font-size: 20px;
+        font-size: 11px;
     }
 }
 
@@ -230,6 +230,7 @@ a {
 @media (max-width: 768px) {
     .navbar .navbar-menu .navbar-nav > li > a {
         border-bottom: 1px solid #eceef3;
+        font-size: 20px;
     }
 }
 .navbar .navbar-menu .navbar-nav > li.active a {
@@ -326,7 +327,7 @@ button:hover {
     text-decoration: none;
 }
 
-@media (max-width: 930px)
+@media (max-width: 768px)
 {
     .externLink a
     {
