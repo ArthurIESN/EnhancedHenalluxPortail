@@ -220,7 +220,7 @@ a {
     .navbar .navbar-menu .navbar-nav > li > a
     {
         padding: 0.5rem 0.5rem;
-        font-size: 11px;
+        font-size: 20px;
     }
 }
 
@@ -326,6 +326,21 @@ button:hover {
     text-decoration: none;
 }
 
-.externLink a:hover {
+@media (max-width: 930px)
+{
+    .externLink a
+    {
+        background-color: transparent;
+        color: black !important;
+    }
+
+    .externLink a:hover {
+        background-color: #66f;
+        color: white;
+    }
+}
+
+.externLink a:hover
+{
     background-color: #31317d;
 }
