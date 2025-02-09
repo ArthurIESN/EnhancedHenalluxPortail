@@ -321,7 +321,8 @@ button:hover {
     box-shadow: #5E5DF0 0 15px 25px -10px;
 }
 
-.externLink a {
+.externLink a
+{
     background-color: #66f;
     color: white !important;
     text-decoration: none;

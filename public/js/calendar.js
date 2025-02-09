@@ -8,13 +8,13 @@ class Calendar
         {
             this.calendarElement = document.querySelector('calendar');
             this.classes = new Array(4); // B1, B2, B3 and other
-            this.events = events;
+            this.events = this.CorrectEventsTime(events);
             this.colors = new Array(4);
 
-            this.CacheEvents(events);
-            this.FillClasses(events);
+            this.CacheEvents(this.events);
+            this.FillClasses(this.events);
 
-            let filteredEvents = this.FilterEvents(events);
+            let filteredEvents = this.FilterEvents(this.events);
 
             this.LoadClassesColors();
 
@@ -36,6 +36,22 @@ class Calendar
             this.calendar.render();
         }
 
+    }
+
+
+    CorrectEventsTime(events)
+    {
+        let referenceDate = '20250126T000000Z';
+        events = events.filter(e =>
+        {
+            if (e.start)
+            {
+                return e.start > referenceDate;
+            }
+            return true;
+        });
+
+        return events;
     }
 
     UpdateColors()
@@ -273,7 +289,6 @@ class Calendar
             if(length > 1)
             {
                 let year = this.GetYear(event.title);
-
                 if(excludedClasses && excludedClasses.length > 0)
                 {
 
@@ -282,7 +297,14 @@ class Calendar
                         viewedEvents = viewedEvents.filter(e => e.title !== event.title);
                     }
                 }
+
             }
+        });
+
+        // remove events if they have the same name and the same start date and end date
+        viewedEvents = viewedEvents.filter((event, index, self) =>
+        {
+            return index === self.findIndex(e => e.title === event.title && e.start === event.start && e.end === event.end);
         });
 
         return viewedEvents;
@@ -305,7 +327,7 @@ class Calendar
 
         let cacheEvents = events.filter(event =>
         {
-            // some events don't have a start or end date (?? this is dump)
+            // some events don't have a start or end date (??)
             if (!event.start || !event.end)
             {
                 return false;
