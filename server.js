@@ -40,6 +40,33 @@ app.use((req, res, next) => {
     }
 });
 
+app.post('/api/local', async (req, res) =>
+{
+    const { token } = req;
+    const url = `${baseUrl}locals/implantation/1`;
+
+    if (!token)
+    {
+        return res.status(401).json({ message: 'Token JWT requis' });
+    }
+
+    sendRequest(url, token, res);
+});
+
+//plannings/local/
+app.post('/api/plannings/local/:endpoint', async (req, res) =>
+{
+    const { token } = req;
+    const url = `${baseUrl}plannings/local/${req.params.endpoint}`;
+
+    if (!token)
+    {
+        return res.status(401).json({ message: 'Token JWT requis' });
+    }
+
+    sendRequest(url, token, res);
+});
+
 app.post('/api/:endpoint', async (req, res) =>
 {
     const { token } = req;

@@ -25,12 +25,61 @@ document.addEventListener('DOMContentLoaded', async function()
     SetupConditionOfUse();
     SetupColors();
     SetupSettings();
+    SetupModal()
+    SetupCustomButton();
     LoadCachedEvents();
     await LoadPromotions();
     await getMyEvents();
     calendarMessage.style.display = 'none';
     UpdateClasses();
 });
+
+function SetupCustomButton()
+{
+    let customButton = document.getElementById('selectCustomButton');
+
+    // when clicked show my horaire
+    customButton.addEventListener('click', async function()
+    {
+        LoadCachedEvents();
+        await LoadPromotions();
+        await getMyEvents();
+        calendarMessage.style.display = 'none';
+        UpdateClasses();
+    });
+}
+
+function SetupModal()
+{
+    let selectClassButton = document.getElementById('selectClassButton');
+    let showClassesButton = document.getElementById('showClasses');
+    let closeClassButton = document.getElementById('closeClasses');
+
+    if(selectClassButton)
+    {
+        selectClassButton.addEventListener('click', OpenClasses);
+    }
+
+    if(showClassesButton)
+    {
+        showClassesButton.addEventListener('click', ShowClasses)
+    }
+
+    // when clicked outside the modal, close it
+    let modal = document.getElementById('modal');
+    modal.addEventListener('click', function(event)
+    {
+        if (event.target === modal)
+        {
+            modal.style.display = 'none';
+        }
+    });
+
+    closeClassButton.addEventListener('click', function()
+    {
+        modal.style.display = 'none';
+    });
+}
 
 async function LoadPromotions()
 {
@@ -470,18 +519,132 @@ function ImportSettings()
         localStorage.setItem('colors', JSON.stringify(colors));
         localStorage.setItem('promotions', settings.promotions);
 
-        let oldClasses = settings.classes;
+
         let classes = [];
 
-        oldClasses = JSON.parse(oldClasses);
-
-        oldClasses.forEach(oldClass =>
+        if(settings.from === 'EnhancedHenalluxPortail')
         {
-            classes.push({cours : oldClass.classe, year : Number(oldClass.year) === 0 ? 3 : oldClass.year - 1});
-        });
+            classes = settings.classes;
 
-       localStorage.setItem('classes', JSON.stringify(classes));
+            localStorage.setItem('classes', classes);
+        }
+        else
+        {
+            let oldClasses = settings.classes;
+            oldClasses = JSON.parse(oldClasses);
 
-       location.reload();
+            oldClasses.forEach(oldClass =>
+            {
+                classes.push({cours : oldClass.classe, year : Number(oldClass.year) === 0 ? 3 : oldClass.year - 1});
+            });
+
+            localStorage.setItem('classes', JSON.stringify(classes));
+        }
+
+        location.reload();
     }
+}
+
+function ExportSettings()
+{
+    let settings =
+    {
+        from : 'EnhancedHenalluxPortail',
+        token : localStorage.getItem('token'),
+        colors : JSON.parse(localStorage.getItem('colors')),
+        promotions : localStorage.getItem('promotions'),
+        classes : localStorage.getItem('classes')
+    }
+
+    navigator.clipboard.writeText(JSON.stringify(settings));
+}
+
+async function OpenClasses()
+{
+    // if modalClasses is empty do it
+    let modalClasses = document.getElementById('modalClasses');
+    let modal = document.getElementById('modal');
+
+    if(modalClasses.children.length === 0)
+    {
+        let classes = await sendRequest('local/');
+
+        // Add for each class a button and a label
+        classes.data.forEach(classe =>
+        {
+            // create a checkbox
+            let checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = classe.id;
+            checkbox.className = 'classCheckbox';
+
+
+            let label = document.createElement('label');
+            label.textContent = classe.local_name;
+            label.className = 'classLabel';
+
+            let div = document.createElement('div');
+            div.appendChild(checkbox);
+            div.appendChild(label);
+
+            div.addEventListener('click', function()
+            {
+                checkbox.click();
+            });
+
+            modalClasses.appendChild(div);
+        });
+    }
+
+    if(modal)
+    {
+        modal.style.display = 'grid';
+    }
+
+}
+
+async function ShowClasses()
+{
+    let modal = document.getElementById('modalClasses');
+
+    //  make an array with all id from all selected checkboxes
+    let classes = "[";
+
+    Array.from(modal.children).forEach(element =>
+    {
+        let checkbox = element.children[0];
+        if (checkbox.checked)
+        {
+            classes += checkbox.id + ',';
+        }
+    });
+
+    classes = classes.slice(0, -1);
+    classes += ']';
+
+    let modalContainer = document.getElementById('modal');
+    modalContainer.style.display = 'none';
+
+    let test = await sendRequest("plannings/local/" + classes);
+
+    calendar.ShowCalendarWithoutSettings(test);
+}
+
+// Update classes when using the search bar in the modal
+function UpdateClassesModal()
+{
+    let search = document.getElementById('searchBar').value;
+    let classes = document.getElementsByClassName('classLabel');
+
+    Array.from(classes).forEach(element =>
+    {
+        if(element.textContent.toLowerCase().includes(search.toLowerCase()))
+        {
+            element.parentElement.style.display = 'block';
+        }
+        else
+        {
+            element.parentElement.style.display = 'none';
+        }
+    });
 }

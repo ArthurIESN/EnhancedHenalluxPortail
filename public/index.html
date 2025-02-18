@@ -83,6 +83,7 @@
                     <input type="text" id="ImportSettings" class="form-control" placeholder="">
                     <button onclick="ImportSettings()">Importer les paramètres</button>
                 </div>
+                <button onclick="ExportSettings()">Exporter les paramètres</button>
 
             </div>
 
@@ -140,6 +141,25 @@
 
 <div class="message-container">
     <p id="calendarMessage"></p>
+</div>
+
+<div id="modal">
+    <div id="modalContent">
+        <div class="modal-buttons">
+            <button id="showClasses">Afficher</button>
+            <button id="closeClasses">X</button>
+        </div>
+
+        <!-- Search bar -->
+        <input oninput="UpdateClassesModal()" type="text" id="searchBar" placeholder="Chercher un local">
+
+        <div id="modalClasses"></div>
+    </div>
+</div>
+
+<div class="custom-button-container">
+    <button id="selectCustomButton">Horaire</button>
+    <button id="selectClassButton">Locaux</button>
 </div>
 
 <calendar></calendar>

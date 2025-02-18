@@ -38,6 +38,25 @@ class Calendar
 
     }
 
+    // Show a calendar with events but without colors, saving and all other stuff
+    ShowCalendarWithoutSettings(events)
+    {
+        this.calendar = new FullCalendar.Calendar(this.calendarElement,
+            {
+                initialView: 'listWeek',
+                locale: 'fr',
+                firstDay: 1, // start at Monday
+                events: events,
+                timeZone: 'Europe/Brussels',
+                eventDidMount: (info) =>
+                {
+                    info.el.style.backgroundColor =  "#FFFFFF";
+                },
+                noEventsContent: 'Aucun événement à afficher',
+            });
+
+        this.calendar.render();
+    }
 
     CorrectEventsTime(events)
     {
@@ -149,7 +168,7 @@ class Calendar
                 }
             }
 
-            if(count === 3)
+            if(count > 1)
             {
                 for(let i = 0; i < 3; i++)
                 {

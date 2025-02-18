@@ -535,3 +535,180 @@ summary::marker {
     height: auto !important;
 }
 
+#modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1100; /* Sit on top */
+    width: 100%; /* Adjust width as needed */
+    height: 100%; /* Adjust height as needed */
+    background-color: #646464ab;
+    /*display: grid;*/ /* Use flexbox to center */
+    justify-content: center; /* Center horizontally */
+    align-items: flex-start; /* Align items to the start vertically */
+    overflow: hidden;
+}
+
+#modal input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#modal input[type="text"]:focus {
+    border-color: #66f;
+    box-shadow: 0 0 5px rgba(102, 102, 255, 0.5);
+    outline: none;
+}
+
+#modal .modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px; /* Smaller width */
+    max-width: 80%; /* Responsive width */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+}
+
+/*
+CHECKBOX : classCheckbox
+LABEL : classLabel
+*/
+
+/* Style pour la checkbox */
+.classCheckbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #66f; /* Couleur personnalisée pour la checkbox */
+    border: 2px solid #66f; /* Bordure de la checkbox */
+    border-radius: 4px; /* Coins arrondis */
+    transition: background-color 0.1s ease, border-color 0.1s ease;
+    pointer-events: none;
+}
+
+.classCheckbox:checked {
+    background-color: #66f; /* Couleur de fond lorsque cochée */
+    border-color: #66f; /* Couleur de la bordure lorsque cochée */
+}
+
+/* Style pour le label */
+.classLabel {
+    font-size: 1rem;
+    color: #333;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: color 0.1s ease;
+}
+
+.classLabel:hover {
+    color: #66f; /* Couleur du texte au survol */
+}
+
+/* Style pour le titre du modal */
+#modal h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+
+/* Style pour chaque élément de classe */
+#modalClasses .classCheckbox {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#modalClasses .classLabel {
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+}
+
+#modalClasses div {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    background-color: white;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#modalClasses div:hover {
+    background-color: #f0f0f0;
+}
+
+/* Style pour le bouton */
+#showClasses {
+    display: block;
+    width: 80%;
+    padding: 10px;
+    background-color: #66f;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+}
+
+#showClasses:hover {
+    background-color: #559;
+}
+
+#modalClasses {
+    max-height: 70%; /* Adjust height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 10px; /* Add padding if needed */
+    box-sizing: border-box; /* Ensure padding is included in the height */
+}
+
+#modalContent
+{
+    width: 400px;
+    height: 25%;
+}
+
+@media (max-width: 768px)
+{
+    #modalContent
+    {
+        width: 350px;
+    }
+}
+
+.custom-button-container
+{
+    margin: 40px auto 0 auto;
+    width: fit-content;
+}
+
+.modal-buttons
+{
+    display: flex;
+}
+
+#closeClasses
+{
+    margin-left: 15px;
+    height: 100%;
+    margin-top: 20px;
+    background-color: #ff2f2f;
+    font-size: 35px;
+    padding: 11px;
+    border-radius: 9999px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
