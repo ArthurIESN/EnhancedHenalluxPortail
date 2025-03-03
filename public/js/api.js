@@ -1,11 +1,16 @@
 
-async function sendRequest(url)
+async function sendRequest(url, items)
 {
-    let token = localStorage.getItem('token') || '';
     let conditionOfUse = localStorage.getItem('conditionOfUse');
 
-    if(conditionOfUse === null || conditionOfUse !== 'accepted')
-    {
+    let parsedCondition;
+    try {
+        parsedCondition = JSON.parse(conditionOfUse);
+    } catch (e) {
+        return {code: 402};
+    }
+
+    if (parsedCondition === null || parsedCondition.v !== '1.1' || parsedCondition.status !== 'accepted') {
         return {code: 402};
     }
 
@@ -15,10 +20,12 @@ async function sendRequest(url)
         {
             method: 'POST',
             headers: {
-                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
                 'Accept-Language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
             },
+            body: JSON.stringify(items)
         });
 
-    return await response.json();
+    let res = await response.json();
+    return res;
 }

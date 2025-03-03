@@ -6,6 +6,7 @@ class Calendar
     {
         if(events)
         {
+            this.SetupCalendarTypeButtons();
             this.calendarElement = document.querySelector('calendar');
             this.classes = new Array(4); // B1, B2, B3 and other
             this.events = this.CorrectEventsTime(events);
@@ -20,13 +21,16 @@ class Calendar
 
             this.calendar = new FullCalendar.Calendar(this.calendarElement,
                 {
-                    initialView: 'listWeek',
+                    initialView: localStorage.getItem('calendarView') ? localStorage.getItem('calendarView') : 'listWeek',
                     locale: 'fr',
                     firstDay: 1, // start at Monday
                     events: filteredEvents,
                     initialDate: oldDate, // if calendar is reloaded, keep the date where it was
                     timeZone: 'Europe/Brussels',
                     noEventsContent: 'Aucun événement à afficher',
+                    buttonText: {
+                        today: 'Aujourd\'hui',
+                    },
                     eventDidMount: (info) =>
                     {
                         info.el.style.backgroundColor =  enableColors ? this.GetBackgroundColor(info.event) : '#FFC7C7';
@@ -38,9 +42,48 @@ class Calendar
 
     }
 
+
+    SetupCalendarTypeButtons() {
+        // <div class="calendar-type-container">
+        //     <button id="calendarTypeDayGrid"><i class="fas fa-calendar-day"></i> Jour</button>
+        //     <button id="calendarTypeWeek"><i class="fas fa-calendar-week"></i> Semaine</button>
+        //     <button id="calendarTypeMonth"><i class="fas fa-calendar-alt"></i> Mois</button>
+        //     <button id="calendarTypeList"><i class="fas fa-list"></i> Liste</button>
+        // </div>
+
+        const dayButton = document.getElementById('calendarTypeDayGrid');
+        const weekButton = document.getElementById('calendarTypeWeek');
+        const monthButton = document.getElementById('calendarTypeMonth');
+        const listButton = document.getElementById('calendarTypeList');
+
+        dayButton.addEventListener('click', () => {
+            this.calendar.changeView('timeGridDay');
+
+            localStorage.setItem('calendarView', 'timeGridDay');
+        });
+
+        weekButton.addEventListener('click', () => {
+            this.calendar.changeView('timeGridWeek');
+
+            localStorage.setItem('calendarView', 'timeGridWeek');
+        });
+
+        monthButton.addEventListener('click', () => {
+            this.calendar.changeView('dayGridMonth');
+
+            localStorage.setItem('calendarView', 'dayGridMonth');
+        });
+
+        listButton.addEventListener('click', () => {
+            this.calendar.changeView('listWeek');
+
+            localStorage.setItem('calendarView', 'listWeek');
+        });
+    }
+
     // Show a calendar with events but without colors, saving and all other stuff
-    ShowCalendarWithoutSettings(events)
-    {
+    ShowCalendarWithoutSettings(events) {
+        let enableColors = true;
         this.calendar = new FullCalendar.Calendar(this.calendarElement,
             {
                 initialView: 'listWeek',
@@ -50,7 +93,7 @@ class Calendar
                 timeZone: 'Europe/Brussels',
                 eventDidMount: (info) =>
                 {
-                    info.el.style.backgroundColor =  "#FFFFFF";
+                    info.el.style.backgroundColor =  enableColors ? this.GetBackgroundColor(info.event) : '#FFC7C7';
                 },
                 noEventsContent: 'Aucun événement à afficher',
             });

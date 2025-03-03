@@ -10,7 +10,7 @@ let class_b3;
 let class_other;
 let calendarMessage;
 
-
+getSelectedPromotions();
 
 document.addEventListener('DOMContentLoaded', async function()
 {
@@ -22,11 +22,12 @@ document.addEventListener('DOMContentLoaded', async function()
     promotionList = document.getElementById('promotions-list');
     calendarMessage = document.getElementById('calendarMessage');
 
+
     SetupConditionOfUse();
     SetupColors();
+    SetupPromotions();
     SetupSettings();
-    SetupModal()
-    SetupCustomButton();
+    //SetupModal();
     LoadCachedEvents();
     await LoadPromotions();
     await getMyEvents();
@@ -34,21 +35,57 @@ document.addEventListener('DOMContentLoaded', async function()
     UpdateClasses();
 });
 
-function SetupCustomButton()
+
+
+function SetupPromotions()
 {
-    let customButton = document.getElementById('selectCustomButton');
+    const promotions = [{"id":"2-3491-4532","name":"IE-ASI-1M"},{"id":"2-3525-9014","name":"IE-ASI-1M-A"},{"id":"2-3528-9015","name":"IE-ASI-2M-A"},{"id":"2-2350-981","name":"IE-AU-1B-A"},{"id":"2-2351-989","name":"IE-AU-1B-B"},{"id":"2-2352-2826","name":"IE-AU-1B-C"},{"id":"2-2359-1058","name":"IE-AU-2B-A"},{"id":"2-2360-1059","name":"IE-AU-2B-B"},{"id":"2-2361-5399","name":"IE-AU-2B-C"},{"id":"2-2368-1136","name":"IE-AU-3B-A"},{"id":"2-2369-5037","name":"IE-AU-3B-B"},{"id":"2-2370-8557","name":"IE-AU-3B-C"},{"id":"2-2377-6321","name":"IE-CF-2B-A"},{"id":"2-2378-6322","name":"IE-CF-2B-B"},{"id":"2-2379-8086","name":"IE-CF-2B-C"},{"id":"2-2386-6326","name":"IE-CF-3B-A"},{"id":"2-2387-6327","name":"IE-CF-3B-B"},{"id":"2-2395-8088","name":"IE-CG-2B-A"},{"id":"2-2396-9083","name":"IE-CG-2B-B"},{"id":"2-2404-1124","name":"IE-CG-3B-A"},{"id":"2-2405-6331","name":"IE-CG-3B-B"},{"id":"2-2413-1106","name":"IE-CP-1B-A"},{"id":"2-2414-1107","name":"IE-CP-1B-B"},{"id":"2-2415-1109","name":"IE-CP-1B-C"},{"id":"2-2416-1110","name":"IE-CP-1B-D"},{"id":"2-2417-1111","name":"IE-CP-1B-E"},{"id":"2-2418-1113","name":"IE-CP-1B-F"},{"id":"2-2422-1095","name":"IE-DR-1B-A"},{"id":"2-2423-1096","name":"IE-DR-1B-B"},{"id":"2-2424-1097","name":"IE-DR-1B-C"},{"id":"2-2425-1099","name":"IE-DR-1B-D"},{"id":"2-2431-1100","name":"IE-DR-2B-A"},{"id":"2-2432-1101","name":"IE-DR-2B-B"},{"id":"2-2433-1103","name":"IE-DR-2B-C"},{"id":"2-2434-2301","name":"IE-DR-2B-D"},{"id":"2-2440-1104","name":"IE-DR-3B-A"},{"id":"2-2441-1105","name":"IE-DR-3B-B"},{"id":"2-2442-2302","name":"IE-DR-3B-C"},{"id":"2-2449-1018","name":"IE-IG-1B-A"},{"id":"2-2450-3602","name":"IE-IG-1B-B"},{"id":"2-2451-1019","name":"IE-IG-1B-C"},{"id":"2-2452-1020","name":"IE-IG-1B-D"},{"id":"2-2453-3599","name":"IE-IG-1B-E"},{"id":"2-2454-8444","name":"IE-IG-1B-F"},{"id":"2-2458-1006","name":"IE-IG-2B-A"},{"id":"2-2459-1034","name":"IE-IG-2B-B"},{"id":"2-2460-8434","name":"IE-IG-2B-C"},{"id":"2-2461-9455","name":"IE-IG-2B-D"},{"id":"2-2467-1078","name":"IE-IG-3B-A"},{"id":"2-2468-1953","name":"IE-IG-3B-B"},{"id":"2-2469-8491","name":"IE-IG-3B-C"},{"id":"2-3517-9152","name":"IE-INTAR-1B-A"},{"id":"2-3518-9153","name":"IE-INTAR-1B-B"},{"id":"2-3519-9154","name":"IE-INTAR-1B-C"},{"id":"2-3520-9155","name":"IE-INTAR-1B-D"},{"id":"2-3521-9156","name":"IE-INTAR-1B-E"},{"id":"2-3522-9157","name":"IE-INTAR-1B-F"},{"id":"2-3586-9457","name":"IE-INTAR-2B-D"},{"id":"2-2584-9181","name":"IE-IR-1B-A"},{"id":"2-2585-9182","name":"IE-IR-1B-B"},{"id":"2-2586-5530","name":"IE-IR-1B-C"},{"id":"2-2587-9183","name":"IE-IR-1B-D"},{"id":"2-2588-9184","name":"IE-IR-1B-E"},{"id":"2-2589-9185","name":"IE-IR-1B-F"},{"id":"2-2590-9186","name":"IE-IR-1B-G"},{"id":"2-2591-5535","name":"IE-IR-1B-H"},{"id":"2-3461-9187","name":"IE-IR-1B-I"},{"id":"2-2593-5692","name":"IE-IR-2B-A"},{"id":"2-2594-5693","name":"IE-IR-2B-B"},{"id":"2-2595-5694","name":"IE-IR-2B-C"},{"id":"2-2596-5930","name":"IE-IR-2B-D"},{"id":"2-2597-8032","name":"IE-IR-2B-E"},{"id":"2-2602-6132","name":"IE-IR-3B-A"},{"id":"2-2603-6133","name":"IE-IR-3B-B"},{"id":"2-2604-6134","name":"IE-IR-3B-C"},{"id":"2-2476-1079","name":"IE-MK-1B-A"},{"id":"2-2477-1080","name":"IE-MK-1B-B"},{"id":"2-2478-1011","name":"IE-MK-1B-C"},{"id":"2-2479-1082","name":"IE-MK-1B-D"},{"id":"2-2480-1083","name":"IE-MK-1B-E"},{"id":"2-2481-1085","name":"IE-MK-1B-F"},{"id":"2-2482-1086","name":"IE-MK-1B-G"},{"id":"2-2483-4478","name":"IE-MK-1B-H"},{"id":"2-3463-5624","name":"IE-MK-1B-I"},{"id":"2-3464-8952","name":"IE-MK-1B-J"},{"id":"2-2485-1087","name":"IE-MK-2B-A"},{"id":"2-2486-1088","name":"IE-MK-2B-B"},{"id":"2-2487-1089","name":"IE-MK-2B-C"},{"id":"2-2489-4692","name":"IE-MK-2B-E"},{"id":"2-2490-5392","name":"IE-MK-2B-F"},{"id":"2-2491-8063","name":"IE-MK-2B-G"},{"id":"2-2492-8064","name":"IE-MK-2B-H"},{"id":"2-2494-1091","name":"IE-MK-3B-A"},{"id":"2-2495-1092","name":"IE-MK-3B-B"},{"id":"2-2498-6116","name":"IE-MK-3B-E"},{"id":"2-2499-6117","name":"IE-MK-3B-F"},{"id":"2-2500-8079","name":"IE-MK-3B-G"},{"id":"2-2501-8376","name":"IE-MK-3B-H"},{"id":"2-2548-1013","name":"IE-NSEFS-3B-A"},{"id":"2-3493-9235","name":"IE-RB-1B"},{"id":"2-3514-9133","name":"IE-RB-1B-A"},{"id":"2-3515-9134","name":"IE-RB-1B-B"},{"id":"2-3516-9135","name":"IE-RB-1B-C"},{"id":"2-3589-9481","name":"IE-RB-2B-B"},{"id":"2-3529-9196","name":"IE-RT-1B-A"},{"id":"2-3530-9197","name":"IE-RT-1B-B"},{"id":"2-3531-9198","name":"IE-RT-1B-C"},{"id":"2-3532-9199","name":"IE-RT-1B-D"},{"id":"2-3533-9200","name":"IE-RT-1B-E"},{"id":"2-3534-9201","name":"IE-RT-1B-F"},{"id":"2-3535-9202","name":"IE-RT-1B-G"},{"id":"2-3536-9203","name":"IE-RT-1B-H"},{"id":"2-3537-9204","name":"IE-RT-1B-I"},{"id":"2-3541-9401","name":"IE-RT-2B-A"},{"id":"2-3478-8883","name":"IE-SBDA-4S"},{"id":"2-3479-8911","name":"IE-SBDA-4S-A"},{"id":"2-2557-992","name":"IE-TI-1B-A"},{"id":"2-2558-8962","name":"IE-TI-1B-B"},{"id":"2-2559-8964","name":"IE-TI-1B-C"},{"id":"2-2560-8965","name":"IE-TI-1B-D"},{"id":"2-2561-8966","name":"IE-TI-1B-E"},{"id":"2-2562-8967","name":"IE-TI-1B-F"},{"id":"2-2563-8968","name":"IE-TI-1B-G"},{"id":"2-2564-8969","name":"IE-TI-1B-H"},{"id":"2-3460-8970","name":"IE-TI-1B-I"},{"id":"2-2566-984","name":"IE-TI-2B-A"},{"id":"2-2567-985","name":"IE-TI-2B-B"},{"id":"2-2569-5004","name":"IE-TI-2B-D"},{"id":"2-2575-1076","name":"IE-TI-3B-A"},{"id":"2-2576-5661","name":"IE-TI-3B-B"}];
 
-    // when clicked show my horaire
-    customButton.addEventListener('click', async function()
-    {
-        LoadCachedEvents();
-        await LoadPromotions();
-        await getMyEvents();
-        calendarMessage.style.display = 'none';
-        UpdateClasses();
+    const promotionTypes = [...new Set(promotions.map(promotion => promotion.name.split('-')[1]))];
+
+    // Create sections for each promotion type
+    promotionTypes.forEach(type => {
+        const details = document.createElement('details');
+        details.id = `section-${type}`;
+
+        const summary = document.createElement('summary');
+        summary.textContent = type;
+        details.appendChild(summary);
+
+        // Add checkboxes for each promotion within the section
+        promotions.filter(promotion => promotion.name.includes(type)).forEach(promotion => {
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = promotion.id;
+            checkbox.value = promotion.id;
+
+            // Load the selected promotions
+            const selectedPromotions = JSON.parse(localStorage.getItem('promotions')) || [];
+            if (selectedPromotions.includes(promotion.id)) {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', SavePromotions);
+
+            const label = document.createElement('label');
+            label.htmlFor = promotion.id;
+
+            const name = promotion.name.split('-').slice(2).join('-');
+
+            label.appendChild(document.createTextNode(name));
+
+            const div = document.createElement('div');
+            div.className = 'promotion-item';
+            div.appendChild(checkbox);
+            div.appendChild(label);
+
+            details.appendChild(div);
+        });
+
+        promotionList.appendChild(details);
     });
-}
 
+}
 function SetupModal()
 {
     let selectClassButton = document.getElementById('selectClassButton');
@@ -83,7 +120,18 @@ function SetupModal()
 
 async function LoadPromotions()
 {
-    myPromotions = await sendRequest('classes/my');
+
+    let promotions = promotionList;
+
+    // foreach promotionList add an event listener to the checkbox
+    let checkboxes = document.querySelectorAll('#promotions-list input[type="checkbox"]');
+    checkboxes.forEach(checkbox =>
+    {
+        checkbox.addEventListener('change', SavePromotions);
+    });
+
+
+    /*myPromotions = await sendRequest('classes/my');
 
     if(myPromotions.code === 401)
     {
@@ -93,10 +141,10 @@ async function LoadPromotions()
     else if(myPromotions.code === 402)
     {
         calendarMessage.textContent = "Veuillez accepter les conditions d'utilisation";
-    }
+    } */
 
     // show a list of promotions in html
-    myPromotions.data.forEach(promotion =>
+    /*myPromotions.data.forEach(promotion =>
     {
         let checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
@@ -133,7 +181,7 @@ async function LoadPromotions()
         });
 
         promotionList.appendChild(div);
-    });
+    });*/
 }
 
 function LoadCachedEvents()
@@ -142,7 +190,7 @@ function LoadCachedEvents()
     if (events)
     {
         console.log("loading events from cache");
-        calendarMessage.textContent = "Les événements affichés actuellement proviennent du cache. Si une mise à jour a été effectuée, veuillez patienter jusqu'à ce que ce message disparaisse.";
+        calendarMessage.textContent = "Actualisation des événements...";
         calendarMessage.style.display = 'block';
         calendar = new Calendar(events);
     }
@@ -174,6 +222,7 @@ function SetupSettings()
         }
     });
 
+    /*
     let token = localStorage.getItem('token');
     if (token)
     {
@@ -182,7 +231,7 @@ function SetupSettings()
     else
     {
         console.warn('Token is empty');
-    }
+    } */
 
     let clearSettingsButton = document.getElementById('clearSettings');
 
@@ -246,15 +295,25 @@ function LoadColors()
 
 function SetupConditionOfUse()
 {
-    if(localStorage.getItem('conditionOfUse') !== 'accepted')
+    let conditionOfUse = localStorage.getItem('conditionOfUse');
+
+    console.log(conditionOfUse);
+
+    let conditionOfUseObj;
+    try {
+        conditionOfUseObj = JSON.parse(conditionOfUse);
+    } catch (e)
     {
+        conditionOfUse = null;
+    }
+
+    if (conditionOfUse === null || (conditionOfUseObj && (conditionOfUseObj.v !== '1.1' || conditionOfUseObj.status !== 'accepted'))) {
         document.getElementById('conditions-container').style.display = 'flex';
 
         let conditionButton = document.getElementById('acceptConditions');
 
-        conditionButton.addEventListener('click', function()
-        {
-            localStorage.setItem('conditionOfUse', 'accepted');
+        conditionButton.addEventListener('click', function() {
+            localStorage.setItem('conditionOfUse', '{"v" : "1.1", "status" : "accepted"}');
             location.reload();
         });
     }
@@ -388,31 +447,28 @@ function saveClasses()
     localStorage.setItem('classes', JSON.stringify(classes));
 
     Updatecalendar(); // update direcly the calendar to avoid any delay and show the result smoothly
-    getMyEvents(); // then update in background the events
 }
 
 async function SavePromotions()
 {
-
-    console.log('saving promotions');
-
     localStorage.removeItem('promotions');
     let promotions = [];
 
-    Array.from(promotionList.children).forEach(promotion =>
+    let classes = promotionList.querySelectorAll('.promotion-item');
+
+    classes.forEach(classe =>
     {
-        let checkbox = promotion.querySelector('input[type="checkbox"]');
+        let checkbox = classe.querySelector('input[type="checkbox"]');
         if (checkbox && checkbox.checked)
         {
             promotions.push(checkbox.id);
         }
     });
 
-
     localStorage.setItem('promotions', JSON.stringify(promotions));
 
     await getMyEvents(); // update in background the events
-    UpdateClasses();
+    //UpdateClasses();
 }
 
 function UpdateToken()
@@ -449,10 +505,27 @@ async function GetClasses(events)
 
 async function getMyEvents()
 {
-    let promotionsId = getSelectedPromotions();
+    let items = getSelectedPromotions();
 
-    let url = "plannings/promotion/[" + promotionsId + "]";
-    let events = await sendRequest(url);
+    let events =  await sendRequest('planning', items);
+
+    if(!events)
+    {
+        calendarMessage.textContent = "Erreur lors de la récupération des événements. They may updated the 'snapshot'.";
+        return;
+    }
+
+
+
+    const eventsArray = events.flatMap(str => {
+        try {
+            return JSON.parse(str);
+        } catch (e) {
+            console.error("Erreur de parsing JSON:", e);
+            return [];
+        }
+    });
+
 
 
     let oldDate;
@@ -461,7 +534,7 @@ async function getMyEvents()
         oldDate = calendar.calendar.getDate();
     }
 
-    calendar = new Calendar(events, oldDate);
+    calendar = new Calendar(eventsArray, oldDate);
 }
 
 async function Updatecalendar()
@@ -476,18 +549,19 @@ async function Updatecalendar()
 
 function getSelectedPromotions()
 {
-    let selectedPromotions = '';
-    let checkboxes = document.querySelectorAll('#promotions-list input[type="checkbox"]');
+    let promotions;
 
-    checkboxes.forEach(checkbox =>
+    try
     {
-        if (checkbox.checked) {
-            selectedPromotions += (checkbox.value + ',');
-        }
-    });
+        promotions= JSON.parse(localStorage.getItem('promotions'));
+    }
+    catch (e)
+    {
+        console.error('Invalid JSON format');
+        return;
+    }
 
-    selectedPromotions = selectedPromotions.slice(0, -1);
-    return selectedPromotions;
+    return promotions;
 }
 
 
@@ -647,4 +721,37 @@ function UpdateClassesModal()
             element.parentElement.style.display = 'none';
         }
     });
+}
+
+async function ImportPromotions()
+{
+    let promotions = document.getElementById('ImportPromotions').value;
+
+    // promotions needs to be this format in json
+    // [{"classe" : value, "id" : value, "name" : value, "type" : value}, ...]
+    console.log(promotions);
+    try
+    {
+        promotions = JSON.parse(promotions);
+    }
+    catch (e)
+    {
+        console.error('Invalid JSON format');
+        return;
+    }
+
+    // check the format of the input // [{"classe" : value, "id" : value, "name" : value, "type" : value}, ...]
+    let regex = /^\[{"classe" : ".+", "id" : ".+", "name" : ".+", "type" : ".+"}, .+\]$/;
+    /*if(!regex.test(promotions))
+    {
+        console.error('Invalid JSON format');
+        return;
+    }*/
+
+
+    // send data to the server
+    await sendRequest('import/promotions', {promotions : promotions});
+
+
+
 }

@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/calendar.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- icon -->
     <link rel="icon" href="images/logo.png">
     <title>Enhanced Henallux Portail</title>
@@ -22,14 +23,9 @@
 
 <div id="conditions-container" class="hidden">
     <div id="conditions-content">
-        <h2 class="highlight">Conditions d'utilisation</h2>
-        <p>Dans le cadre de l’utilisation d’EnhancedHenalluxPortail.be, nous avons besoin de votre accord pour l’utilisation de votre <span class="highlight">Token</span> associé au site <a href="https://portail.henallux.be">https://portail.henallux.be</a>.</p>
-        <p>Ce <span class="highlight">Token</span> nous permet d’effectuer des requêtes vers le serveur <a href="https://portail.henallux.be/api">https://portail.henallux.be/api</a> afin de récolter les informations nécessaires au bon fonctionnement du site web.</p>
-        <p>Votre <span class="highlight">Token</span> est sauvegardé localement sur votre navigateur.<br> Veuillez noter que le <span class="highlight">Token</span> st également envoyé à notre serveur afin d’effectuer les requêtes nécessaires à l’affichage de votre horaire.</p>
-        <p>Si vous ne souhaitez pas utiliser votre <span class="highlight">Token</span> pour quelque raison que ce soit, vous pouvez toujours <a href="/extension/EnhancedHenalluxPortail.zip"> télécharger l’extension Google Chrome </a> qui agit directement sur le portail Henallux sans communiquer avec notre serveur.</p>
-        <p>Aucune de vos informations transitant par notre serveur n’est sauvegardée</p>
-        <p>Veuillez noter que, sans accepter ces conditions d’utilisation, vous ne pourrez pas utiliser le site web.</p>
-
+        <h2 class="highlight">Attention</h2>
+        <p>La mise à jour de l'horaire ne se fait pas en temps réel. Votre planning ne s'actualise qu'une seule fois par heure.</p>
+        <p>Si une mise à jour a été effectuée sur les serveurs du <strong>portail.henallux.be</strong>, elle ne s'affichera pas directement.</p>
         <button class="red-button" id="acceptConditions">Accepter</button>
     </div>
 </div>
@@ -73,15 +69,21 @@
 
             <!-- token input -->
             <div class="form-group">
+                <!--
                 <label for="token">Token:</label>
                 <div class="settings-container">
                     <input type="text" id="token" class="form-control" placeholder="Enter your token">
                     <button onclick="UpdateToken()">Valider le token</button>
                 </div>
+                -->
                 <label for="ImportSettings">Importer les paramètres:</label>
                 <div class="settings-container">
                     <input type="text" id="ImportSettings" class="form-control" placeholder="">
                     <button onclick="ImportSettings()">Importer les paramètres</button>
+                </div>
+                <div class="settings-container">
+                    <input type="text" id="ImportPromotions" class="form-control" placeholder="">
+                    <button onclick="ImportPromotions()">Importer vos classes</button>
                 </div>
                 <button onclick="ExportSettings()">Exporter les paramètres</button>
 
@@ -91,7 +93,10 @@
             <div id="promotions-container">
                 <details>
                     <summary>LISTE DES GROUPES</summary>
-                    <div id="promotions-list"></div>
+                    <div id="promotions-list">
+                        <div id="promotions">
+                        </div>
+                    </div>
                 </details>
 
                 <!-- list of classes -->
@@ -157,9 +162,11 @@
     </div>
 </div>
 
-<div class="custom-button-container">
-    <button id="selectCustomButton">Horaire</button>
-    <button id="selectClassButton">Locaux</button>
+<div class="calendar-type-container">
+    <button id="calendarTypeDayGrid"><i class="fas fa-calendar-day"></i> Jour</button>
+    <button id="calendarTypeWeek"><i class="fas fa-calendar-week"></i> Semaine</button>
+    <button id="calendarTypeMonth"><i class="fas fa-calendar-alt"></i> Mois</button>
+    <button id="calendarTypeList"><i class="fas fa-list"></i> Liste</button>
 </div>
 
 <calendar></calendar>

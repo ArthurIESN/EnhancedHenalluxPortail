@@ -711,4 +711,25 @@ LABEL : classLabel
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.calendar-type-container {
+    display: flex;
+    gap: 10px;
+    margin: 20px auto; /* Centrer horizontalement */
+    justify-content: center; /* Centrer les éléments à l'intérieur */
+}
+
+.calendar-type-container button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+@media (max-width: 500px) {
+    .calendar-type-container button {
+        gap: 10px;
+        padding: 10px;
+        font-size: 0.7rem;
+    }
+}
+
 

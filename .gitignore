@@ -3,3 +3,8 @@ node_modules/
 
 #.htaccess
 /public/.htaccess
+
+
+.env
+promotions.json
+tokens.bak
