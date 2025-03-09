@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', async function()
     promotionList = document.getElementById('promotions-list');
     calendarMessage = document.getElementById('calendarMessage');
 
-
     SetupConditionOfUse();
     SetupColors();
     SetupPromotions();
@@ -31,11 +30,27 @@ document.addEventListener('DOMContentLoaded', async function()
     LoadCachedEvents();
     await LoadPromotions();
     await getMyEvents();
-    calendarMessage.style.display = 'none';
+    setCalendarMessage();
     UpdateClasses();
 });
 
+let forceCalendarMessage = false;
+function setCalendarMessage(message = "", force = forceCalendarMessage) {
 
+    // if there is no message, hide the message
+    if (message === "" && !forceCalendarMessage)
+    {
+        calendarMessage.style.display = 'none';
+    }
+    // if there is a message, show it
+    else if(!forceCalendarMessage)
+    {
+        calendarMessage.style.display = 'block';
+        calendarMessage.textContent = message;
+    }
+
+    forceCalendarMessage = force;
+}
 
 function SetupPromotions()
 {
@@ -297,8 +312,6 @@ function SetupConditionOfUse()
 {
     let conditionOfUse = localStorage.getItem('conditionOfUse');
 
-    console.log(conditionOfUse);
-
     let conditionOfUseObj;
     try {
         conditionOfUseObj = JSON.parse(conditionOfUse);
@@ -509,13 +522,12 @@ async function getMyEvents()
 
     let events =  await sendRequest('planning', items);
 
-    if(!events)
+
+    if(events.status === 520)
     {
-        calendarMessage.textContent = "Erreur lors de la récupération des événements. They may updated the 'snapshot'.";
+        setCalendarMessage("Erreur lors de la récupération des événements", true);
         return;
     }
-
-
 
     const eventsArray = events.flatMap(str => {
         try {
@@ -533,6 +545,11 @@ async function getMyEvents()
     {
         oldDate = calendar.calendar.getDate();
     }
+
+    eventsArray.forEach(event =>
+    {
+        event.title += ' - ' + event.location;
+    });
 
     calendar = new Calendar(eventsArray, oldDate);
 }

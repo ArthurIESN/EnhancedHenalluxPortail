@@ -1,5 +1,3 @@
-// a calendar class with by default value, get a ref to the balise and set the value
-
 class Calendar
 {
     constructor(events, oldDate, enableColors = true)
@@ -16,6 +14,14 @@ class Calendar
             this.FillClasses(this.events);
 
             let filteredEvents = this.FilterEvents(this.events);
+
+            // add a events
+            filteredEvents.push({
+                title: 'Le portail est réparé. Vous devez néanmoins re selectionner vos classes pour les afficher.',
+                start: '20250303T000000Z',
+                end: '20250308T000000Z'
+            });
+
 
             this.LoadClassesColors();
 
@@ -116,18 +122,27 @@ class Calendar
         return events;
     }
 
-    UpdateColors()
+    async UpdateColors()
     {
         this.LoadClassesColors();
+
+        let currentView = this.calendar.view.type;
+        this.calendar.changeView('timeGridDay');
+
         this.calendar.getEvents().forEach(event =>
         {
             event.setProp('backgroundColor', this.GetBackgroundColor(event));
         });
 
+
+        // refresh the view
+        this.calendar.render();
+
         // change view to refresh colors
         // this is a hack to refresh the colors of the events. but at least it works
         this.calendar.changeView('dayGridMonth');
-        this.calendar.changeView('listWeek');
+
+        this.calendar.changeView(currentView);
     }
 
     Empty()
@@ -236,6 +251,14 @@ class Calendar
         let title = event.title;
         let level = this.GetYear(title);
 
+        // if dark mode
+        const htmlElement = document.documentElement;
+        const isDarkMode = htmlElement.getAttribute('data-theme') === 'dark';
+
+        if(isDarkMode)
+        {
+            return this.adjustBrightness(this.colors[level] || "#333333", 0.5);
+        }
         return this.colors[level];
     }
 
@@ -409,6 +432,34 @@ class Calendar
     {
 
     }
+
+    adjustBrightness(hex, factor = 0.7)
+    {
+        if (!/^#([0-9A-F]{3}){1,2}$/i.test(hex)) {
+            throw new Error("Format hexadécimal invalide");
+        }
+
+        // Convertit les couleurs raccourcies (#RGB → #RRGGBB)
+        if (hex.length === 4) {
+            hex = "#" + [...hex.slice(1)].map(x => x + x).join("");
+        }
+
+        // Convertit en valeurs R, G, B
+        let r = parseInt(hex.slice(1, 3), 16);
+        let g = parseInt(hex.slice(3, 5), 16);
+        let b = parseInt(hex.slice(5, 7), 16);
+
+        // Assombrit la couleur en appliquant un facteur (et garde entre 0 et 255)
+        r = Math.max(0, Math.min(255, Math.round(r * factor)));
+        g = Math.max(0, Math.min(255, Math.round(g * factor)));
+        b = Math.max(0, Math.min(255, Math.round(b * factor)));
+
+        // Convertit en hexadécimal et s'assure d'avoir toujours 2 caractères
+        const darkHex = `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
+
+        return darkHex.toUpperCase(); // Retourne en majuscules pour standardisation
+    }
+
 
 }
 

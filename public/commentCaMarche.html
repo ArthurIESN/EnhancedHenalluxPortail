@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Enhanced Henallux Portail</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/presentation.css">
     <link rel="icon" href="images/logo.png">
@@ -13,7 +14,7 @@
 </head>
 <body>
 <nav class="navbar">
-    <div class="container container-large">
+    <div class="container">
         <div class="settings-container">
             <div class="navbar-header">
                 <button class="navbar-toggler" data-toggle="open-navbar1">
@@ -21,15 +22,23 @@
                     <span></span>
                     <span></span>
                 </button>
-                <a href="#">
+                <a href="/">
                     <h4>Enhanced<span>Henallux Portail</span></h4>
                 </a>
+                <div class="togglebutton">
+                    <input type="checkbox" class="checkbox" id="toggleDarkMode">
+                    <label for="toggleDarkMode" class="checkbox-label">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                        <span class="ball"></span>
+                    </label>
+                </div>
             </div>
         </div>
         <div class="navbar-menu" id="open-navbar1">
             <ul class="navbar-nav">
                 <li><a href="/">Horaire</a></li>
-                <li><a href="extension.html">Extension</a></li>
+                <!-- <li><a href="extension.html">Extension</a></li> -->
                 <li class="active"><a href="commentCaMarche.html">Comment ça marche ?</a></li>
                 <li class="externLink"><a href="https://outlook.office.com/mail/" target="_blank">Outlook</a></li>
                 <li class="externLink"><a href="https://moodle.henallux.be/my/" target="_blank">Moodle</a></li>
@@ -47,10 +56,11 @@
 <div class="installation-steps">
 
     <div class="download-link">
-        <p>Pour utiliser correctement l'horaire sur le site, vous aurez besoin de la derniere version de <a href="/extension.html">l'extension Google Chrome</a></p>
+        <!-- <p>Pour utiliser correctement l'horaire sur le site, vous aurez besoin de la derniere version de <a href="/extension.html">l'extension Google Chrome</a></p> -->
         <p>Les cours de la semaine en cours et ceux de la semaine suivante sont sauvegardés dans le cache. Lors du chargement du site, ces cours sont chargés instantanément.</p>
     </div>
 
+    <!--
     <details>
         <summary>
             1. Mise en place du Token
@@ -71,9 +81,9 @@
         <summary>
             2. Paramètres
         </summary>
-        <h2>La personnalisations de l'horaire fonctionne comme avec l'extension. Voir la section Utilisation de la page extension</h2>
-    </details>
-
+        <h2></h2>
+    </details>-->
+    <!--
     <details>
         <summary>
             3. Importer vos paramètres
@@ -83,6 +93,7 @@
         <p>Pour importer sur le site, allez dans les paramètres et copiez-les dans la section adéquate puis appuyez sur le bouton pour importer les paramètres.</p>
         <img src="images/steps/steps_import.png" alt="import">
     </details>
+    -->
 </div>
 
 </body>

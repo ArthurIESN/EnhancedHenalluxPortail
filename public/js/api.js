@@ -23,9 +23,8 @@ async function sendRequest(url, items)
                 'Content-Type': 'application/json',
                 'Accept-Language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
             },
-            body: JSON.stringify(items)
+            body: JSON.stringify(items || {})
         });
 
-    let res = await response.json();
-    return res;
+    return await response.json();
 }

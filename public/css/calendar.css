@@ -108,6 +108,31 @@ calendar {
     overflow: auto;
 }
 
+html[data-theme='dark'] .popup-content {
+    background: #121212;
+    color: #ffffff;
+}
+
+html[data-theme='dark'] .popup-content input {
+    background: #1e1e1e;
+    color: #ffffff;
+}
+
+html[data-theme='dark'] .popup-content details {
+    background: #1e1e1e;
+    color: #ffffff;
+}
+
+html[data-theme='dark'] .popup-content details div {
+    background: #1e1e1e;
+    color: #ffffff;
+}
+
+html[data-theme='dark'] #promotions-list {
+    background: #1e1e1e;
+    color: #ffffff;
+}
+
 #classes,
 #promotions-container {
     width: 100%;
@@ -276,18 +301,7 @@ summary::marker {
 }
 
 
-.settings-container
-{
-    display: flex;
-    gap: 10px;
-    margin: 10px 0;
-}
 
-.settings-container button
-{
-    width: 230px;
-    font-size: 12px;
-}
 
 
 #calendarMessage
@@ -385,8 +399,8 @@ summary::marker {
 }
 
 .red-button {
-    background-color: #e74c3c; /* Beau rouge */
-    box-shadow: #c0392b 0 10px 20px -10px; /* Ombre assortie */
+    background-color: #e74c3c !important; /* Beau rouge */
+    box-shadow: #c0392b 0 10px 20px -10px !important; /* Ombre assortie */
 }
 
 .highlight {
@@ -730,6 +744,39 @@ LABEL : classLabel
         padding: 10px;
         font-size: 0.7rem;
     }
+}
+
+html[data-theme='dark'] .modal-buttons button {
+    background-color: #333333;
+    color: #ffffff;
+}
+html[data-theme='dark'] .fc {
+    background-color: #121212;
+    color: #ffffff;
+}
+html[data-theme='dark'] .fc .fc-toolbar {
+    background-color: #1e1e1e;
+}
+html[data-theme='dark'] .fc .fc-daygrid-day {
+    background-color: #1e1e1e;
+}
+html[data-theme='dark'] .fc .fc-daygrid-day-number {
+    color: #ffffff;
+}
+html[data-theme='dark'] .fc .fc-event {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+html[data-theme='dark'] .fc .fc-day-today {
+    background-color: #1e1e1e;
+}
+
+html[data-theme='dark'] .fc .fc-list-day-cushion {
+    background-color: #1e1e1e;
+}
+html[data-theme='dark'] .fc-toolbar-title {
+    color: white;
 }
 
 

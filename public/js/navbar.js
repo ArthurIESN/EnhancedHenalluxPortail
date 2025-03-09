@@ -1,6 +1,34 @@
 let dropdowns = document.querySelectorAll('.navbar .dropdown-toggler')
 let dropdownIsOpen = false
 
+function darkmode()
+{
+    const html = document.documentElement;
+    const toggleButton = document.getElementById('toggleDarkMode');
+
+    if (localStorage.getItem("theme") === "light") {
+        html.setAttribute("data-theme", "light");
+    }
+
+    // Fonction pour basculer le mode
+    toggleButton.addEventListener("click", async () =>
+    {
+        if (html.getAttribute("data-theme") === "dark")
+        {
+            html.setAttribute("data-theme", "light");
+            localStorage.setItem("theme", "light");
+        } else
+        {
+            html.setAttribute("data-theme", "dark");
+            localStorage.setItem("theme", "dark");
+        }
+
+        if (typeof calendar !== 'undefined' && calendar != null) {
+            await calendar.UpdateColors();
+        }
+    });
+}
+
 function closeBurgerMenu() {
     let navbarMenu = document.querySelector('.navbar-menu');
     if (navbarMenu.classList.contains('active')) {
@@ -58,4 +86,5 @@ function handleSmallScreens() {
         })
 }
 
+darkmode();
 handleSmallScreens()

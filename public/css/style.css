@@ -30,7 +30,7 @@ a {
     align-items: center;
     justify-content: space-between;
 }
-@media (max-width: 768px) {
+@media (max-width: 850px) {
     .navbar,
     .navbar > .container {
         display: block;
@@ -47,7 +47,7 @@ a {
     width: 100%;
     z-index: 1000; /* Assurez-vous que la navbar est au-dessus des autres éléments */
 }
-@media (max-width: 768px) {
+@media (max-width: 850px) {
     .navbar
     {
         padding: 1rem 0;
@@ -63,7 +63,7 @@ a {
         /* max-width: 540px; */
     }
 }
-@media (min-width: 768px) {
+@media (min-width: 850px) {
     .navbar .container {
         /* max-width: 720px; */
     }
@@ -84,7 +84,7 @@ a {
     padding-left: 15px;
     padding-right: 15px;
 }
-@media (max-width: 768px) {
+@media (max-width: 850px) {
     .navbar .navbar-header {
         width: 100%;
         display: flex;
@@ -99,7 +99,7 @@ a {
     display: none;
     outline: none;
 }
-@media (max-width: 768px) {
+@media (max-width: 850px) {
     .navbar .navbar-header .navbar-toggler {
         display: block;
         margin-left: auto;
@@ -131,7 +131,17 @@ a {
     flex-basis: auto;
     flex-grow: 1;
 }
-@media (max-width: 768px) {
+
+html[data-theme='dark'] .navbar .navbar-menu.active  {
+    background-color: #1e1e1e !important;
+}
+
+html[data-theme='dark'] .externLink a
+{
+    color: white !important;
+}
+
+@media (max-width: 850px) {
     .navbar .navbar-menu {
         display: none;
         text-align: center;
@@ -144,7 +154,7 @@ a {
     background-color: transparent;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
     .navbar .navbar-menu.active
     {
         background-color: white;
@@ -170,7 +180,7 @@ a {
     display: none;
 }
 
-@media (max-width: 768px)
+@media (max-width: 850px)
 {
     #settingsBurger
     {
@@ -178,7 +188,7 @@ a {
     }
 }
 
-@media (max-width: 768px)
+@media (max-width: 850px)
 {
     #settings
     {
@@ -200,7 +210,13 @@ a {
     list-style: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1020px) {
+    .navbar .navbar-menu .navbar-nav {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 850px) {
     .navbar .navbar-menu .navbar-nav {
         width: 100%;
         display: block;
@@ -227,14 +243,14 @@ a {
 .navbar .navbar-menu .navbar-nav > li > a:hover {
     color: #66f;
 }
-@media (max-width: 768px) {
+@media (max-width: 850px) {
     .navbar .navbar-menu .navbar-nav > li > a {
         border-bottom: 1px solid #eceef3;
         font-size: 20px;
     }
 }
 .navbar .navbar-menu .navbar-nav > li.active a {
-    color: #66f;
+    color: #66f !important;
 }
 .navbar .navbar-menu .navbar-nav .navbar-dropdown .dropdown {
     list-style: none;
@@ -252,7 +268,7 @@ a {
     border-radius: 0.75rem;
     display: none;
 }
-@media (max-width: 768px) {
+@media (max-width: 850px) {
     .navbar .navbar-menu .navbar-nav .navbar-dropdown .dropdown {
         position: relative;
         box-shadow: none;
@@ -285,7 +301,7 @@ a {
     font-weight: 500;
     font-size: 1.25rem;
 }
-@media (max-width: 768px) {
+@media (max-width: 850px) {
     .navbar .navbar-header h4 {
         font-size: 1.05rem;
     }
@@ -316,6 +332,21 @@ button {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* button style dark mode*/
+html[data-theme='dark'] button {
+    background: #66f;
+    color: #FFFFFF;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme='dark'] {
+    background-color: #121212;
+    color: #ffffff;
+}
+html[data-theme='dark'] .navbar {
+    background-color: #1e1e1e;
+}
+
 button:hover {
     transform: translateY(-5px);
     box-shadow: #5E5DF0 0 15px 25px -10px;
@@ -328,16 +359,16 @@ button:hover {
     text-decoration: none;
 }
 
-@media (max-width: 768px)
+@media (max-width: 850px)
 {
     .externLink a
     {
-        background-color: transparent;
         color: black !important;
+        background-color: transparent;
     }
 
     .externLink a:hover {
-        background-color: #66f;
+        background-color: transparent !important;
         color: white;
     }
 }
@@ -345,4 +376,70 @@ button:hover {
 .externLink a:hover
 {
     background-color: #31317d;
+}
+
+
+.checkbox {
+    opacity: 0;
+    position: absolute;
+}
+
+.togglebutton {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.checkbox-label {
+    background-color: #111;
+    width: 50px;
+    height: 26px;
+    border-radius: 50px;
+    position: relative;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fa-moon {color: #f1c40f;}
+
+.fa-sun {color: #f39c12;}
+
+.checkbox-label .ball {
+    background-color: #fff;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .checkbox-label .ball {
+    transform: translateX(24px);
+}
+
+.settings-container
+{
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.settings-container button
+{
+    width: 230px;
+    font-size: 12px;
+}
+
+html[data-theme='dark'] h4
+{
+    color: white;
+}
+
+html[data-theme='dark'] .navbar .navbar-menu .navbar-nav > li > a
+{
+    color : white;
 }
